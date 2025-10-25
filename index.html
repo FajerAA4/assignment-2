@@ -39,7 +39,7 @@
         <input id="searchInput" type="search" placeholder="Search projects...">
         <select id="filterSelect">
             <option value="all">All</option>
-            <option value="harware">hardware</option>
+            <option value="hardware">hardware</option>
             <option value="ui">UI</option>
             <option value="app">App</option>
         </select>
@@ -57,11 +57,12 @@
 <!--contact section with form-->
 <section id="contact">
     <h2>Contact Me</h2>
-    <form>
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea rows="5" placeholder="Your Message" required ></textarea>
-        <button type="submit">Send message</button>
+    <form id="contactForm" novalidate>
+        <input id="name" type="text" placeholder="Your Name" required />
+        <input id="email" type="email" placeholder="Your Email" required />
+        <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+        <p id="formFeedback" style="display:none; text-align:center; margin-top:10px;"></p>
     </form>
 </section>
 <!-- link to external js-->
