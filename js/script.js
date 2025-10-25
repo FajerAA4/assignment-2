@@ -42,11 +42,29 @@ function updateGreeting() {
 }
 // Fetch quote API
 async function loadQuote() {
-    const quoteSection = document.createElement("p");
-    quoteSection.id = "quote";
-    quoteSection.style.textAlign = "center";
-    quoteSection.style.fontStyle = "italic";
-    document.getElementById("greeting").appendChild(quoteSection);
+    let quoteSection = document.getElementById("quote");
+    if (!quoteSection) {
+        quoteSection = document.createElement("p");
+        quoteSection.id = "quote";
+        quoteSection.style.textAlign = "center";
+        quoteSection.style.fontStyle = "italic";
+        document.getElementById("greeting").appendChild(quoteSection);
+    }
+
+    //loading state
+    quoteSection.innerHTML = `
+        <span class="spinner" style="
+            display:inline-block;
+            width:16px; height:16px;
+            border:2px solid #ccc;
+            border-top:2px solid #e91e63;
+            border-radius:50%;
+            animation: spin 0.8s linear infinite;
+            vertical-align:middle;
+            margin-right:6px;
+        "></span>
+        Loading quote...
+    `;
 
     try {
         const res = await fetch("https://dummyjson.com/quotes/random");
@@ -54,7 +72,18 @@ async function loadQuote() {
         const data = await res.json();
         quoteSection.textContent = `"${data.quote}" — ${data.author}`;
     } catch (error) {
-        quoteSection.textContent = "“Stay positive and keep learning!” 🌟";
+        // --- Requirement 2: friendly error + retry button ---
+        quoteSection.innerHTML = `
+            ⚠️ Could not load quote.<br>
+            <button onclick="loadQuote()" style="
+                background:#e91e63;
+                color:#fff;
+                border:none;
+                border-radius:5px;
+                padding:5px 10px;
+                cursor:pointer;
+                margin-top:5px;">Retry</button>
+        `;
     }
 }
 
@@ -151,3 +180,10 @@ function setupContactForm() {
         }, 4000);
     });
 }
+const style = document.createElement("style");
+style.textContent = `
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}`;
+document.head.appendChild(style);
