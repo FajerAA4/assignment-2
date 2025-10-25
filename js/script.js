@@ -91,7 +91,7 @@ async function loadQuote() {
     const projects = [
         { title: "Single Cycle CPU", tag: "hardware",img: "assests/img_1.png", desc: "Built a CPU using Logisim for COE301." },
         { title: "Event Management App", tag: "app", desc: "Designed a Figma prototype for SWE206.",img: "assests/img.png" },
-        { title: "UI Components Library", tag: "ui", desc: "Created reusable interface components in HTML/CSS." ,img: "assests/img_3.png"}
+        { title: "UI Components Library", tag: "implemenation", desc: "Created a MYSQL database and a simple UI." ,img: "assests/img_2.png"}
     ];
 
 
@@ -112,7 +112,7 @@ function renderProjects(list) {
           <img src="${p.img}" alt="${p.title}">
           <h3>${p.title}</h3>
           <p>${p.desc}</p>
-          <span class="tag">${p.tag}</span>
+            <button class="tag" onclick="alert('Feature coming soon!')">${p.tag}</button>
     `;
         container.appendChild(card);
     });
